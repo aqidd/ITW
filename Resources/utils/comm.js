@@ -10,10 +10,12 @@ var Comm = function (options) {
 			if(options.method == undefined) options.method = 'GET';
 		}
 		
+		httpClient.open(options.method, options.url);
+		
 		// the default 
 		httpClient.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 		
-		httpClient.open(options.method, options.url);
+		
 		
 		if(options.headers != undefined) {
 			
@@ -24,38 +26,39 @@ var Comm = function (options) {
 			
 		}
 		
+		httpClient.onload = function() {
+			if(this.status == '200') {
+				if(options.handler != undefined)
+					options.handler(JSON.parse(httpClient.responseText));
+			}
+		}
+		
 		if(options.params != undefined)
 			httpClient.send(options.params);
 		else
 			httpClient.send();
 	}
 	
-	httpClient.onload = function() {
-		if(this.status == '200') {
-			if(options.handler != undefined)
-				options.handler(JSON.parse(httpClient.responseText));
-		}
-	}
-	
-	var fetchTimeOut = setInterval(function() {
-		if(httpClient.readyState == 4) {
+	if(options != undefined) {
+		var fetchTimeOut = setInterval(function() {
+			if(httpClient.readyState == 4) {
+				
+				/**
+				 * Sample fetch data (competition)
+				 */
+				self.fetch({
+					url : 'http://localhost',
+					params : {
+						'cat_id' : options.navigationBar.current_tab_index
+					},
+					handler : function(response) {
+						console.log(response);
+					}
+				});
+			}
 			
-			/**
-			 * Sample fetch data (competition)
-			 */
-			self.fetch({
-				url : 'http://localhost',
-				params : {
-					'cat_id' : options.navigationBar.current_tab_index
-				},
-				handler : function(response) {
-					console.log(response);
-				}
-			});
-		}
-		
-	}, 30000);
-	
-	return self;
+		}, 30000);
+	}
 }
 
+module.exports = Comm;
