@@ -4,7 +4,7 @@
  * 
  */
 var NavigationBar = require('ui/bar_navigation');
-var Comm = require('urils/comm');
+var Comm = require('utils/comm');
 var ListViewCategory = require('ui/listview_category');
 var FavoriteModel = require('model/favorite');
 var GeneralModel = require('model/favorite');

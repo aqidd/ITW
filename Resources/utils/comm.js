@@ -5,7 +5,7 @@ var Comm = function (options) {
 	
 	var httpClient = Ti.Network.createHTTPClient();
 	
-	self.fetch(options) {
+	self.fetch = function(options) {
 		if(options.url != undefined) {
 			if(options.method == undefined) options.method = 'GET';
 		}
