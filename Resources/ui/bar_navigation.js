@@ -57,8 +57,6 @@ var NavigationBar = function(options, data) {
 		});
 	}
 	
-	return self;
-	
 }
 
 module.exports = NavigationBar;

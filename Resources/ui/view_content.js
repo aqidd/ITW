@@ -1,5 +1,7 @@
-var ContentViewer = function() {
+var ContentViewer = function(options) {
 	
 };
+
+module.exports = ContentViewer;
 
 

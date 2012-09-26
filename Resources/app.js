@@ -5,8 +5,11 @@
  */
 var NavigationBar = require('ui/bar_navigation');
 var Comm = require('utils/comm');
-/**
+var GeneralModel = require('model/general');
 var ListViewCategory = require('ui/listview_category');
+
+
+/**
 var FavoriteModel = require('model/favorite');
 var GeneralModel = require('model/favorite');
 var LocationModel = require('model/location');
@@ -35,17 +38,21 @@ var button = Ti.UI.createButton({
 
 var comm = new Comm();
 
-button.addEventListener('click', function(e) {
-	comm.fetch({
-		url : 'http://10.0.2.2/service/allEvent.php',
-		handler : function (response) {
-			Ti.API.info(JSON.stringify(response));
-		}
-	});
+/**
+var navigationBar = new NavigationBar({
+	
+});
+**/
+
+/**
+var image = Ti.UI.createImageView({
+	image : '/images/refresh-button.png',
+	width : 50,
+	height : 50,
+	canScale : true
+	
 })
-
-
-
+**/
 mainWindow.addEventListener('open', function(e) {
 });
 
@@ -57,7 +64,10 @@ mainWindow.addEventListener('open', function(e) {
 
 //mainWindow.add(tabbedBar);
 mainWindow.add(Header);
-mainWindow.add(button);
+/**
+mainWindow.add(navigationBar.widget);
+**/
+//mainWindow.add(image);
 //mainWindow.add(navigationBar.widget);
 //mainWindow.add(GroupTabView);
 //mainWindow.add(listView);

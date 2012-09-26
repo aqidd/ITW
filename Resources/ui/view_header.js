@@ -20,42 +20,38 @@ var Title = Ti.UI.createLabel({
 	text : "myCo",
 	font : {
 		size : 10,
-		color : "white"
 	},
 	left : 20,
+	color : '#FFFFFF',
 	textAlign : 'left',
 	verticalAlign : 'middle'
 });
 
 Header.add(Title);
 
+var res_path = Ti.Filesystem.resourcesDirectory;
+
 var RefreshButton = Ti.UI.createButton({
-	backgroundImage : "refresh-button.png",
+	//title : 'R',
+	backgroundImage : res_path + "refresh-button.png",
 	width : 30,
 	height : 30,
 	top : 10,
-	right : 10
+	right : 10,
+	canScale : true
 });
 
-var AnimateColor = Ti.UI.createAnimation({
-	backgroundColor : '#7BBF19',
+var OpactityAnimation = Ti.UI.createAnimation({
+	//backgroundColor : '#7BBF19',
 	duration : 100,
-	opacity : 0.8
+	opacity : 0.1,
+	autoreverse : true,
+	curve : Ti.UI.ANIMATION_CURVE_EASE_IN
 });
 
-var AnimateColorBackward = Ti.UI.createAnimation({
-	backgroundColor : 'transparent',
-	duration : 100,
-	opacity : 1
-});
-
-AnimateColor.addEventListener('completed', function(src, type) {
-	src.animate(AnimateColorBackward);
-});
 
 RefreshButton.addEventListener('click', function(e) {
-	RefreshButton.animate(AnimateColor);
-	
+	RefreshButton.animate(OpactityAnimation);	
 });
 
 Header.add(RefreshButton);
