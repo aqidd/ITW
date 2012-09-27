@@ -9,8 +9,8 @@ var ListViewByCategory = function(options, data) {
 	self.widget = Ti.UI.createView({
 		width : options.width,
 		height : options.height,
-		top : options.layout.top,
-		left : options.layout.left
+		top : options.top,
+		left : options.left
 	});
 	
 	var titleContainer = Ti.UI.createView({
@@ -24,11 +24,12 @@ var ListViewByCategory = function(options, data) {
 	var titleBar = Ti.UI.createLabel({
 		text : options.title,
 		font : {
-			size : 20,
+			fontSize : 14,
 			verticalAlign : 'middle',
 			textAlign : 'left'
 		},
-		color : 'black'
+		color : 'black',
+		left : 10
 	})
 	
 	titleContainer.add(titleBar);
@@ -39,10 +40,11 @@ var ListViewByCategory = function(options, data) {
 	self.data = [];
 	self.rows = [];
 	
-
-	/**
-	 
-	 self.listView = Ti.UI.createTableView();
+	self.listView = Ti.UI.createTableView({
+		top : 40,
+		height : '100%'
+	});
+	
 	
 	var Model = options.model;
 	
@@ -54,15 +56,7 @@ var ListViewByCategory = function(options, data) {
 			url : options.url,
 			handler : function(response) {
 				
-				
 				self.data = response;
-				
-				
-				
-				for(var ii = 0; ii < self.data.length; ii++) {
-					self.rows.push(new Model(self.data[ii]));
-				}
-				
 				
 				if(options.sortBy != undefined) {
 					if(options.sortDirection == undefined) {
@@ -78,10 +72,25 @@ var ListViewByCategory = function(options, data) {
 					});
 				} 
 				
-				self.listView.data = self.rows;
+				for(var ii = 0; ii < self.data.length; ii++) {
+					
+					self.listView.appendRow(new Model({
+						width : options.width,
+						height : 90,
+						top : 0,
+						left : 0
+						
+					}, self.data[ii]));
+					
+					//Ti.API.info("Debug : " + self.rows[ii]);
+				}
 				
+				
+				
+			
 			}
 		})
+		
 	}
 	else {
 		self.data = data;
@@ -111,10 +120,9 @@ var ListViewByCategory = function(options, data) {
 	}
 	
 	self.widget.add(self.listView);
-	 
-	 
-	 */
 	
+	
+	return self;
 }
 
 

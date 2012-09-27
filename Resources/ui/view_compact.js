@@ -8,15 +8,15 @@ var CompactView = function(options, data) {
 	self.widget = Ti.UI.createView({
 		width : options.width,
 		height : options.height,
-		top : options.layout.top,
-		left : options.layout.left
+		top : options.top-30,
+		left : options.left
 	})
 	
 	
 	var titleContainer = Ti.UI.createView({
 		backgroundColor : '#DADADA',
-		top : 10,
-		width : self.widget.width,
+		top : 0,
+		width : options.width,
 		height : 30,
 		left : 0
 	});
@@ -24,11 +24,12 @@ var CompactView = function(options, data) {
 	var titleBar = Ti.UI.createLabel({
 		text : options.title,
 		font : {
-			size : 20,
+			fontSize : 14,
 			verticalAlign : 'middle',
-			textAlign : 'left'
+			textAlign : 'left',
 		},
-		color : 'black'
+		color : 'black',
+		left : 10
 	})
 	
 	titleContainer.add(titleBar);
@@ -45,6 +46,7 @@ var CompactView = function(options, data) {
 				// atau emang musti bikin db di mobile devicenya
 				self.data = response[0];
 				
+				
 				Ti.API.info(JSON.stringify(self.data));
 				
 				var Model = options.model;
@@ -52,16 +54,14 @@ var CompactView = function(options, data) {
 				self.model = new Model({
 					functionView : Ti.UI.createView,
 					width : options.width,
-					height : options.height,
-					layout : {
-						top : 0,
-						left : 0
-					}
+					height : 200,
+					top : 30,
+					left : 0
 					
 				}, self.data);	
 				
 				self.widget.add(self.model);		
-				
+	
 			}
 		});
 	

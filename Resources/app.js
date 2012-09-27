@@ -32,41 +32,33 @@ Ti.include('data.js');
 Ti.include('ui/view_header.js');
 
 
-var button = Ti.UI.createButton({
-	title : "Test Ajax"
-});
 
-var comm = new Comm();
+
 
 var newestCompetition = new CompactView({
 	url : 'http://10.0.2.2/service/allEvent.php',
 	title : 'Newest Competition',
 	width : Ti.Platform.displayCaps.platformWidh,
 	height : 200,
-	layout : {
-		top: 60,
-		left : 0
-	},
+	top: 100,
+	left : 0,
 	model : GeneralModel,
-	comm : comm
+	comm : new Comm()
 });
-
 
 var homeListView = new ListViewByCategory({
 	title : 'Nearest Deadline Competition',
 	sortBy : 'endDate',
 	sortDirection : 'Ascending',
 	url : 'http://10.0.2.2/service/allEvent.php',
-	comm : comm,
+	comm : new Comm(),
 	model : GeneralModel,
 	width : Ti.Platform.displayCaps.platformWidth,
-	height : 100,
-	layout : {
-		top : 180,
-		left : 0
-	}
+	height : '100%',
+	top : 180,
+	left : 0
 });
-
+/**/
 /**
 var navigationBar = new NavigationBar({
 	
@@ -88,12 +80,6 @@ var image = Ti.UI.createImageView({
 //var navigationBar = new NavigationBar({},{});
 
 
-var testView = Ti.UI.createView({
-	width : Ti.Platform.displayCaps.platformWidth,
-	height : '100%',
-	top : 60,
-	left : 0
-})
 
 
 //mainWindow.add(testView);
