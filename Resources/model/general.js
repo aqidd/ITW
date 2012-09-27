@@ -1,43 +1,47 @@
 /**
  * @author
  */
-var General = function(options) {
+var General = function(options, data) {
 	
+	if(options.functionView != undefined) {
+		options.functionView = Ti.UI.createTableView;
+	}
 	
-	var self = Ti.UI.createTableViewRow({
-		width : '100%',
-		height : 70		
+	var self = options.functionView({
+		width : options.width,
+		height : options.height,
+		top : options.layout.top,
+		left : options.layout.left		
 	});
 	
-	self.id = options.id;
+	self.id = data.id;
 	
 	var title = Ti.UI.createLabel({
-		text : options.name,
+		text : data.title,
 		layout : {
 			top : 10,
-			left : 60
+			left : 100
 		}
 	})
-	
 	var category = Ti.UI.createLabel({
-		text : options.category,
+		text : data.category,
 		layout : {
-			top : 20,
-			left : 60
+			top : 40,
+			left : 100
 		}
 	})
 	
 	var start_date = Ti.UI.createLabel({
-		text : options.start_date,
+		text : data.startDate,
 		layout : {
-			top : 25,
-			left : 60
+			top : 60,
+			left : 100
 		}
 		
 	})
 	
 	var end_date = Ti.UI.createLabel({
-		text : options.end_date,
+		text : data.endDate,
 		layout : {
 			top : 30,
 			left : 60
@@ -45,7 +49,7 @@ var General = function(options) {
 	})
 	
 	var image = Ti.UI.createImageView({
-		image : options.image, 
+		image : data.image, 
 		layout : {
 			top : 10,
 			left : 10
