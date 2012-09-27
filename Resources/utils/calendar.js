@@ -27,6 +27,7 @@ Calendar = function() {
 			end : eventEnds
 		};
 
+
 		var event = calendar.createEvent(details);
 
 		// Now add a reminder via e-mail for 10 minutes before the event.
