@@ -38,6 +38,7 @@ var button = Ti.UI.createButton({
 
 var comm = new Comm();
 
+
 /**
 var navigationBar = new NavigationBar({
 	
